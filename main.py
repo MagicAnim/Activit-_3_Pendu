@@ -19,13 +19,17 @@ def accueil():
     liste_de_mots = ["ordinateur", "clavier", "magic", "araignée", "souris", "fenêtre", "papier", "arbre", "fleur"]
     # On choisit un mot au hasard
     mot_a_deviner = random.choice(liste_de_mots)
+    # On définit le nombre de vies
+    vies = 6
 
-    print(mot_a_deviner)
-    return "Test"
+    return redirect("/jeu")
 
 
-
-
+# Route jeu -> affiche le jeu
+@app.route("/jeu")
+def jeu():
+    # On affiche notre page html
+    return render_template("index.html")
 
 
 
