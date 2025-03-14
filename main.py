@@ -4,7 +4,8 @@ from flask import Flask, render_template, session, redirect
 import os
 # Importation du module os
 import random
-
+# Import de la classe Pendu
+from pendu import Pendu
 
 # Création de l'instance de l'app Flask
 app = Flask("Jeu du Pendu")
@@ -21,6 +22,8 @@ def accueil():
     mot_a_deviner = random.choice(liste_de_mots)
     # On définit le nombre de vies
     vies = 6
+    # On crée une instance du Pendu
+    session["etat_du_jeu"] = Pendu.initialisation(mot_a_deviner ,vies)
 
     return redirect("/jeu")
 
