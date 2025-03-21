@@ -3,6 +3,7 @@ from unidecode import unidecode
 
 # Création de la classe Pendu = tous les attributs et méthodes nécessaires pour le jeu
 class Pendu : 
+
     # On crée les attributs de base pour le jeu
     vies = 0
     mot_a_deviner = ""
@@ -15,7 +16,7 @@ class Pendu :
     ##################################################
     def initialisation(mot_a_deviner , vies):
         mot_a_deviner = unidecode(mot_a_deviner).upper()
-
+        print("Le mot pour cette partie est : ", mot_a_deviner)
         data_etat_du_jeu = {
             "vies" : vies,
             "mot_a_deviner" : mot_a_deviner,
@@ -25,9 +26,8 @@ class Pendu :
             "entree" : "",
             "lettres_proposees" : []
         }
-        
         return data_etat_du_jeu
-    
+
 
     ##################################################
     #              2e METHODE : Deviner              #
@@ -59,9 +59,20 @@ class Pendu :
         else: 
             message = Pendu.deviner_mot(entree)
 
-        # ...
+        # On met à jour notre data_retour
+        data_retour["vies"] = vies
+        data_retour["mot_a_deviner"] = mot_a_deviner
+        data_retour["mot_a_afficher"] = mot_a_afficher
+        data_retour["lettres_proposees"] = lettres_proposees
+        data_retour["message"] = message
 
+        # On vérifie si le joueur 
+        data_retour["victoire"] = not "-" in mot_a_afficher
+        if vies == 0:
+           data_retour["defaite"] = True
 
+        # On renvoie nos données du jeu 
+        return data_retour
 
 
     ##################################################
