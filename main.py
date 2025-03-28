@@ -39,9 +39,20 @@ def deviner():
     # On récupère l'entrée de l'utilisateur
     entree = request.form["entree"]
     # On met à jour le jeu grâce à notre la méthode deviner
-    session["etat_du_jeu"] = Pendu.deviner(session["etat_du_jeu"], entree)
+    session["etat_du_jeu"] = Pendu.deviner(session["etat_du_jeu"], entree.upper())
     # On redirige vers l'affichage du jeu
     return redirect("/jeu")
 
 # Exécution
 app.run(host="0.0.0.0", port = 81)
+
+# FIN FONCTIONNELLE :
+# DEFAITE : A
+# VICTOIRE : A
+# VIES : OK
+# BONNES LETTRES :
+# MOT ENTIER :
+# TEST DU MOT PARTIEL :
+# AFFICHAGE DU MESSAGE A CHAQUE ETAPE: 
+# CHAMP VIDE :
+# DEUX FOIS LA MEME LETTRE : 

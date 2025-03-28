@@ -44,7 +44,7 @@ class Pendu :
         vies = etat_du_jeu["vies"]
         mot_a_deviner = etat_du_jeu["mot_a_deviner"]
         mot_a_afficher = etat_du_jeu["mot_a_afficher"]
-        lettres_proposees =etat_du_jeu["lettres_proposees"]
+        lettres_proposees = etat_du_jeu["lettres_proposees"]
 
         # Donnéees retournées par deviner()
         data_retour = {
@@ -53,8 +53,12 @@ class Pendu :
             "derniere_entree" : ""
         }
 
+        # On retire les accents de notre entree
+        entree = unidecode(entree)
         # On vérifie si l'utilisateur a tenté un mot ou une lettre
-        if len(entree) == 1 :
+        if len(entree) == 0 :
+            message = "Propose quelque chose !"
+        elif len(entree) == 1 :
             message = Pendu.deviner_lettre(entree)
         else: 
             message = Pendu.deviner_mot(entree)
@@ -127,7 +131,7 @@ class Pendu :
             # On vérifie dans mot_a_deviner si la lettre est à position i
             if lettre == mot_a_deviner[i] :
                 # On passe par une liste car les str sont immuables 
-                mot_tmp = list(mot_a_deviner)
+                mot_tmp = list(mot_a_afficher)
                 # On ajoute à lettre à la bonne position donc i
                 mot_tmp[i] = lettre 
                 # On recupe la str avec la methode join
